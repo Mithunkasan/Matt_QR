@@ -1,6 +1,7 @@
 import prisma from "@/lib/prisma";
 import { StudentTable } from "@/components/StudentTable";
 import { LogoutButton } from "@/components/LogoutButton";
+import { QRModalButton } from "@/components/QRModalButton";
 
 export const dynamic = "force-dynamic";
 
@@ -21,7 +22,10 @@ export default async function DashboardPage() {
               View all student registrations for internship and courses.
             </p>
           </div>
-          <LogoutButton />
+          <div className="flex gap-4">
+            <QRModalButton />
+            <LogoutButton />
+          </div>
         </div>
         <StudentTable data={students} />
       </div>
