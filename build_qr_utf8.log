@@ -1,0 +1,75 @@
+﻿
+> temp@0.1.0 build
+> next build
+
+Γû▓ Next.js 16.1.6 (Turbopack)
+- Environments: .env
+
+node.exe : ΓÜá The 
+"middleware" file convention 
+is deprecated. Please use 
+"proxy" instead. Learn more: 
+https://nextjs.org/docs/messa
+ges/middleware-to-proxy
+At 
+C:\nvm4w\nodejs\npm.ps1:29 
+char:3
++   & $NODE_EXE $NPM_CLI_JS 
+$args
++   
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo           
+   : NotSpecified: (ΓÜá The  
+   "middle...leware-to-pro   
+ xy:String) [], RemoteExc    
+eption
+    + FullyQualifiedErrorId  
+   : NativeCommandError
+ 
+  Creating an optimized production build ...
+Γ£ô Compiled successfully in 8.0s
+  Running TypeScript ...
+Failed to compile.
+
+./src/components/QRModalButto
+n.tsx:20:22
+Type error: Type '{ 
+children: Element; asChild: 
+true; }' is not assignable 
+to type 'IntrinsicAttributes 
+& Props<unknown>'.
+  Property 'asChild' does 
+not exist on type 
+'IntrinsicAttributes & 
+Props<unknown>'.
+
+[0m [90m 18 |[39m   
+[36mreturn[39m (
+ [90m 19 |[39m     
+[33m<[39m[33mDialog[39m 
+open[33m=[39m{open} onOpenC
+hange[33m=[39m{setOpen}[33
+m>[39m
+[31m[1m>[22m[39m[90m 20 
+|[39m       [33m<[39m[33m
+DialogTrigger[39m 
+asChild[33m>[39m
+ [90m    |[39m             
+         [31m[1m^[22m[39m
+ [90m 21 |[39m         
+[33m<[39m[33mButton[39m v
+ariant[33m=[39m[32m"outlin
+e"[39m className[33m=[39m
+[32m"text-brand-blue 
+border-brand-blue hover:bg-br
+and-blue/10"[39m[33m>[39m
+ [90m 22 |[39m           
+[33m<[39m[33mQrCode[39m c
+lassName[33m=[39m[32m"w-4 
+h-4 mr-2"[39m 
+[33m/[39m[33m>[39m
+ [90m 23 |[39m           
+[33mShow[39m [33mQR[39m 
+[33mCode[39m[0m
+Next.js build worker exited 
+with code: 1 and signal: null
