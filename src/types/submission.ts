@@ -1,21 +1,17 @@
-export const studentYearOptions = [
-  "1st Year",
-  "2nd Year",
-  "3rd Year",
-  "4th Year",
+export const qualificationOptions = [
+  "10th",
+  "12th",
+  "Bachelor",
+  "Master",
 ] as const
 
-export type StudentYear = (typeof studentYearOptions)[number]
+export type Qualification = (typeof qualificationOptions)[number]
 
 export type SubmissionFormValues = {
   name: string
   age: number
   mobileNumber: string
-  email: string
-  collegeName: string
-  department: string
-  year: StudentYear
-  alternativeMobileNumber?: string
+  qualification: Qualification
 }
 
 export type SerializedSubmission = SubmissionFormValues & {

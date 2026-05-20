@@ -62,7 +62,7 @@ export function SearchInput({ defaultValue }: SearchInputProps) {
             setValue(event.target.value)
           })
         }}
-        placeholder="Search name, mobile, email, college, department, year, or QR ID"
+        placeholder="Search name, mobile, qualification, or QR ID"
         className="h-11 rounded-full border-white/20 bg-white/75 pl-10 dark:bg-slate-950/60"
         aria-label="Search enquiries"
       />

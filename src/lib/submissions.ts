@@ -20,11 +20,7 @@ function serializeSubmission(submission: Submission): SerializedSubmission {
     name: submission.name,
     age: submission.age,
     mobileNumber: submission.mobileNumber,
-    email: submission.email,
-    collegeName: submission.collegeName,
-    department: submission.department,
-    year: submission.year as SerializedSubmission["year"],
-    alternativeMobileNumber: submission.alternativeMobileNumber ?? undefined,
+    qualification: submission.year as SerializedSubmission["qualification"],
     createdAt: submission.createdAt.toISOString(),
   }
 }
@@ -39,11 +35,7 @@ function createSubmissionWhere(query: string): Prisma.SubmissionWhereInput {
   return {
     OR: [
       { name: { contains: query, mode: "insensitive" } },
-      { email: { contains: query, mode: "insensitive" } },
       { mobileNumber: { contains: query, mode: "insensitive" } },
-      { alternativeMobileNumber: { contains: query, mode: "insensitive" } },
-      { collegeName: { contains: query, mode: "insensitive" } },
-      { department: { contains: query, mode: "insensitive" } },
       { year: { contains: query, mode: "insensitive" } },
       { formId: { contains: query, mode: "insensitive" } },
       ...(Number.isNaN(numericAge) ? [] : [{ age: numericAge }]),
@@ -77,11 +69,10 @@ export async function createSubmissionRecord(
       name: input.name,
       age: input.age,
       mobileNumber: input.mobileNumber,
-      email: input.email,
-      collegeName: input.collegeName,
-      department: input.department,
-      year: input.year,
-      alternativeMobileNumber: input.alternativeMobileNumber,
+      email: `${input.mobileNumber}@no-email.local`,
+      collegeName: "Not provided",
+      department: input.qualification,
+      year: input.qualification,
     },
   })
 }
@@ -178,11 +169,7 @@ export function submissionsToCsv(rows: SerializedSubmission[]) {
     "Name",
     "Age",
     "Mobile Number",
-    "Email",
-    "College Name",
-    "Department",
-    "Year",
-    "Alternative Mobile Number",
+    "Qualification",
     "Created At",
   ]
 
@@ -195,11 +182,7 @@ export function submissionsToCsv(rows: SerializedSubmission[]) {
       row.name,
       row.age,
       row.mobileNumber,
-      row.email,
-      row.collegeName,
-      row.department,
-      row.year,
-      row.alternativeMobileNumber ?? "-",
+      row.qualification,
       row.createdAt,
     ]
       .map((value) => escapeValue(String(value)))

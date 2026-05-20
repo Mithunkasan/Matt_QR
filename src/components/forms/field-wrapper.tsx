@@ -21,9 +21,16 @@ export function FieldWrapper({
   return (
     <div className={cn("space-y-2", className)}>
       <div className="flex items-center justify-between gap-3">
-        <Label htmlFor={htmlFor}>{label}</Label>
+        <Label
+          htmlFor={htmlFor}
+          className="text-[#0f2f6f] dark:text-[#0f2f6f]"
+        >
+          {label}
+        </Label>
         {hint ? (
-          <span className="text-xs text-slate-500 dark:text-slate-400">{hint}</span>
+          <span className="text-xs text-slate-500 dark:text-slate-500">
+            {hint}
+          </span>
         ) : null}
       </div>
       {children}

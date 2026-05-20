@@ -105,8 +105,8 @@ export default async function AdminDashboardPage({
               Submitted enquiries
             </h2>
             <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">
-              Search by student name, mobile number, email, college, department,
-              year, or QR route ID.
+              Search by student name, mobile number, qualification, or QR route
+              ID.
             </p>
           </div>
           <SearchInput key={query} defaultValue={query} />
