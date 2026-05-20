@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 
 import { QrGenerator } from "@/components/admin/qr-generator"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { createRandomFormId } from "@/lib/qr"
+import { DEMO_FORM_ID } from "@/lib/constants"
 
 export const metadata: Metadata = {
   title: "QR generator",
@@ -24,7 +24,7 @@ export default async function AdminQrGeneratorPage({
   const initialFormId =
     typeof params.id === "string" && params.id.trim()
       ? params.id
-      : createRandomFormId()
+      : DEMO_FORM_ID
 
   return (
     <div className="mx-auto max-w-7xl space-y-8 px-4 py-10 sm:px-6 lg:px-8">
