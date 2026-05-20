@@ -21,6 +21,9 @@ type SubmissionFormProps = {
   formId: string
 }
 
+const fieldControlClassName =
+  "h-11 rounded-full border-[#c7d6ec] bg-white px-4 text-[#123b84] placeholder:text-[#7b8ba6] focus-visible:border-[#0ea5d1] dark:border-[#c7d6ec] dark:bg-white dark:text-[#123b84] dark:placeholder:text-[#7b8ba6]"
+
 export function SubmissionForm({ formId }: SubmissionFormProps) {
   const router = useRouter()
   const [isPending, beginTransition] = useTransition()
@@ -85,7 +88,7 @@ export function SubmissionForm({ formId }: SubmissionFormProps) {
   return (
     <form
       onSubmit={form.handleSubmit(onSubmit)}
-      className="space-y-3"
+      className="space-y-3 text-[#123b84]"
       noValidate
     >
       <div className="grid gap-3 sm:grid-cols-2">
@@ -97,6 +100,7 @@ export function SubmissionForm({ formId }: SubmissionFormProps) {
           <Input
             id="name"
             placeholder="Mithun Das"
+            className={fieldControlClassName}
             aria-invalid={Boolean(form.formState.errors.name)}
             {...form.register("name")}
           />
@@ -113,6 +117,7 @@ export function SubmissionForm({ formId }: SubmissionFormProps) {
             min={15}
             max={35}
             placeholder="18"
+            className={fieldControlClassName}
             aria-invalid={Boolean(form.formState.errors.age)}
             {...form.register("age")}
           />
@@ -128,6 +133,7 @@ export function SubmissionForm({ formId }: SubmissionFormProps) {
             id="email"
             type="email"
             placeholder="mithun@example.com"
+            className={fieldControlClassName}
             aria-invalid={Boolean(form.formState.errors.email)}
             {...form.register("email")}
           />
@@ -143,6 +149,7 @@ export function SubmissionForm({ formId }: SubmissionFormProps) {
             inputMode="numeric"
             maxLength={10}
             placeholder="9876543210"
+            className={fieldControlClassName}
             aria-invalid={Boolean(form.formState.errors.mobileNumber)}
             {...form.register("mobileNumber")}
           />
@@ -157,6 +164,7 @@ export function SubmissionForm({ formId }: SubmissionFormProps) {
           <Input
             id="collegeName"
             placeholder="MATT Engineering College"
+            className={fieldControlClassName}
             aria-invalid={Boolean(form.formState.errors.collegeName)}
             {...form.register("collegeName")}
           />
@@ -169,6 +177,7 @@ export function SubmissionForm({ formId }: SubmissionFormProps) {
           <Input
             id="department"
             placeholder="Computer Science"
+            className={fieldControlClassName}
             aria-invalid={Boolean(form.formState.errors.department)}
             {...form.register("department")}
           />
@@ -183,6 +192,7 @@ export function SubmissionForm({ formId }: SubmissionFormProps) {
           <Select
             id="year"
             defaultValue=""
+            className={fieldControlClassName}
             aria-invalid={Boolean(form.formState.errors.year)}
             {...form.register("year")}
           >
@@ -208,6 +218,7 @@ export function SubmissionForm({ formId }: SubmissionFormProps) {
             inputMode="numeric"
             maxLength={10}
             placeholder="9876543211"
+            className={fieldControlClassName}
             aria-invalid={Boolean(form.formState.errors.alternativeMobileNumber)}
             {...form.register("alternativeMobileNumber")}
           />
