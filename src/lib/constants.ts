@@ -3,6 +3,7 @@ export const APP_TAGLINE = "We Lead To Digital Era"
 export const APP_DESCRIPTION =
   "MATT Engineering Solutions blends hardware and software training with QR-powered digital brochure delivery, enquiry capture, and admin-ready submission tracking."
 
+export const PRODUCTION_APP_URL = "https://matt-qr.vercel.app"
 export const DEMO_FORM_ID = "course-brochure"
 export const PUBLIC_PDF_PATH = "/qr-submission-guide.pdf"
 export const ADMIN_SESSION_COOKIE = "matt-admin-session"
