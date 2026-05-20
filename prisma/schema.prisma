@@ -1,0 +1,27 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Submission {
+  id                      String   @id @default(cuid())
+  formId                  String?
+  name                    String
+  age                     Int
+  mobileNumber            String
+  email                   String
+  collegeName             String
+  department              String
+  year                    String
+  alternativeMobileNumber String?
+  createdAt               DateTime @default(now())
+
+  @@index([createdAt(sort: Desc)])
+  @@index([email])
+  @@index([formId])
+  @@index([mobileNumber])
+  @@index([collegeName])
+}

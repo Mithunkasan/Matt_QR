@@ -1,0 +1,57 @@
+import type { Metadata } from "next"
+
+import { SubmissionForm } from "@/components/forms/submission-form"
+import { MotionFade } from "@/components/shared/motion-fade"
+import { Logo } from "@/components/shared/logo"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { resolveFormId } from "@/lib/qr"
+
+type FormPageProps = {
+  params: Promise<{ id: string }>
+}
+
+export async function generateMetadata({
+  params,
+}: FormPageProps): Promise<Metadata> {
+  const { id } = await params
+  const formId = resolveFormId(id)
+
+  return {
+    title: `Student enquiry form for ${formId}`,
+    description:
+      "Student enquiry form for brochure download and follow-up.",
+  }
+}
+
+export default async function FormPage({ params }: FormPageProps) {
+  const { id } = await params
+  const formId = resolveFormId(id)
+
+  return (
+    <main className="min-h-screen bg-[linear-gradient(180deg,#f8fbff,#eef4ff)] px-4 py-8 sm:px-6 lg:px-8">
+      <div className="mx-auto flex min-h-[calc(100vh-4rem)] w-full max-w-3xl items-center justify-center">
+        <MotionFade className="w-full">
+          <Card className="border-[#d8dfef] bg-white/95 shadow-[0_36px_100px_-60px_rgba(15,44,100,0.35)]">
+            <CardHeader className="space-y-5 text-center">
+              <div className="mx-auto">
+                <Logo size="lg" showTagline />
+              </div>
+              <div className="space-y-2">
+                <CardTitle className="text-3xl text-[#123b84] sm:text-4xl">
+                  Student Enquiry Form
+                </CardTitle>
+                <CardDescription className="text-base leading-7 text-[#4a6296]">
+                  Fill in your details below to submit your enquiry and download
+                  the brochure instantly.
+                </CardDescription>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <SubmissionForm formId={formId} />
+            </CardContent>
+          </Card>
+        </MotionFade>
+      </div>
+    </main>
+  )
+}
