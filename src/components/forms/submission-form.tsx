@@ -14,7 +14,7 @@ import { Input } from "@/components/ui/input"
 import { Select } from "@/components/ui/select"
 import { Spinner } from "@/components/ui/spinner"
 import type { SubmissionFormValues } from "@/types/submission"
-import { studentYearOptions } from "@/types/submission"
+import { qualificationOptions } from "@/types/submission"
 import { submissionSchema } from "@/validations/submission"
 
 type SubmissionFormProps = {
@@ -22,7 +22,7 @@ type SubmissionFormProps = {
 }
 
 const fieldControlClassName =
-  "h-11 rounded-full border-[#c7d6ec] bg-white px-4 text-[#123b84] placeholder:text-[#7b8ba6] focus-visible:border-[#0ea5d1] dark:border-[#c7d6ec] dark:bg-white dark:text-[#123b84] dark:placeholder:text-[#7b8ba6]"
+  "h-11 rounded-full border-[#c7d6ec] bg-white px-4 text-[#123b84] caret-[#123b84] placeholder:text-[#7b8ba6] focus-visible:border-[#0ea5d1] dark:border-[#c7d6ec] dark:bg-white dark:text-[#123b84] dark:caret-[#123b84] dark:placeholder:text-[#7b8ba6]"
 
 export function SubmissionForm({ formId }: SubmissionFormProps) {
   const router = useRouter()
@@ -38,11 +38,7 @@ export function SubmissionForm({ formId }: SubmissionFormProps) {
       name: "",
       age: "",
       mobileNumber: "",
-      email: "",
-      collegeName: "",
-      department: "",
-      year: undefined,
-      alternativeMobileNumber: "",
+      qualification: undefined,
     },
   })
 
@@ -88,7 +84,7 @@ export function SubmissionForm({ formId }: SubmissionFormProps) {
   return (
     <form
       onSubmit={form.handleSubmit(onSubmit)}
-      className="space-y-3 text-[#123b84]"
+      className="space-y-3 text-[#123b84] dark:text-[#123b84]"
       noValidate
     >
       <div className="grid gap-3 sm:grid-cols-2">
@@ -105,11 +101,7 @@ export function SubmissionForm({ formId }: SubmissionFormProps) {
             {...form.register("name")}
           />
         </FieldWrapper>
-        <FieldWrapper
-          htmlFor="age"
-          label="Age"
-          error={form.formState.errors.age?.message}
-        >
+        <FieldWrapper htmlFor="age" label="Age" error={form.formState.errors.age?.message}>
           <Input
             id="age"
             type="number"
@@ -124,20 +116,6 @@ export function SubmissionForm({ formId }: SubmissionFormProps) {
         </FieldWrapper>
       </div>
       <div className="grid gap-3 sm:grid-cols-2">
-        <FieldWrapper
-          htmlFor="email"
-          label="Email"
-          error={form.formState.errors.email?.message}
-        >
-          <Input
-            id="email"
-            type="email"
-            placeholder="mithun@example.com"
-            className={fieldControlClassName}
-            aria-invalid={Boolean(form.formState.errors.email)}
-            {...form.register("email")}
-          />
-        </FieldWrapper>
         <FieldWrapper
           htmlFor="mobileNumber"
           label="Mobile Number"
@@ -154,74 +132,27 @@ export function SubmissionForm({ formId }: SubmissionFormProps) {
             {...form.register("mobileNumber")}
           />
         </FieldWrapper>
-      </div>
-      <div className="grid gap-3 sm:grid-cols-2">
         <FieldWrapper
-          htmlFor="collegeName"
-          label="College Name"
-          error={form.formState.errors.collegeName?.message}
-        >
-          <Input
-            id="collegeName"
-            placeholder="MATT Engineering College"
-            className={fieldControlClassName}
-            aria-invalid={Boolean(form.formState.errors.collegeName)}
-            {...form.register("collegeName")}
-          />
-        </FieldWrapper>
-        <FieldWrapper
-          htmlFor="department"
-          label="Department"
-          error={form.formState.errors.department?.message}
-        >
-          <Input
-            id="department"
-            placeholder="Computer Science"
-            className={fieldControlClassName}
-            aria-invalid={Boolean(form.formState.errors.department)}
-            {...form.register("department")}
-          />
-        </FieldWrapper>
-      </div>
-      <div className="grid gap-3 sm:grid-cols-2">
-        <FieldWrapper
-          htmlFor="year"
-          label="Year"
-          error={form.formState.errors.year?.message}
+          htmlFor="qualification"
+          label="Qualification"
+          error={form.formState.errors.qualification?.message}
         >
           <Select
-            id="year"
+            id="qualification"
             defaultValue=""
             className={fieldControlClassName}
-            aria-invalid={Boolean(form.formState.errors.year)}
-            {...form.register("year")}
+            aria-invalid={Boolean(form.formState.errors.qualification)}
+            {...form.register("qualification")}
           >
             <option value="" disabled>
-              Select year
+              Select qualification
             </option>
-            {studentYearOptions.map((year) => (
-              <option key={year} value={year}>
-                {year}
+            {qualificationOptions.map((qualification) => (
+              <option key={qualification} value={qualification}>
+                {qualification}
               </option>
             ))}
           </Select>
-        </FieldWrapper>
-        <FieldWrapper
-          htmlFor="alternativeMobileNumber"
-          label="Alternative Mobile Number"
-          hint="Optional"
-          error={form.formState.errors.alternativeMobileNumber?.message}
-        >
-          <Input
-            id="alternativeMobileNumber"
-            type="tel"
-            inputMode="numeric"
-            maxLength={10}
-            placeholder="9876543211"
-            className={fieldControlClassName}
-            aria-invalid={Boolean(form.formState.errors.alternativeMobileNumber)}
-            {...form.register("alternativeMobileNumber")}
-          />
         </FieldWrapper>
       </div>
       <Button
@@ -231,7 +162,7 @@ export function SubmissionForm({ formId }: SubmissionFormProps) {
         disabled={isPending}
       >
         {isPending ? <Spinner className="size-4" /> : null}
-        Submit and download brochure
+        Submit and download e-book
       </Button>
     </form>
   )

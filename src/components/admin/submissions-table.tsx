@@ -1,6 +1,6 @@
 "use client"
 
-import { Building2Icon, MailIcon, PhoneIcon } from "lucide-react"
+import { GraduationCapIcon, PhoneIcon } from "lucide-react"
 
 import { DeleteSubmissionDialog } from "@/components/admin/delete-submission-dialog"
 import { EmptyState } from "@/components/shared/empty-state"
@@ -51,8 +51,8 @@ export function SubmissionsTable({
           <TableHeader>
             <TableRow className="border-white/10">
               <TableHead className="px-4">Student</TableHead>
-              <TableHead>Academic</TableHead>
               <TableHead>Contact</TableHead>
+              <TableHead>Qualification</TableHead>
               <TableHead>QR ID</TableHead>
               <TableHead>Submitted</TableHead>
               <TableHead className="px-4 text-right">Actions</TableHead>
@@ -69,38 +69,20 @@ export function SubmissionsTable({
                     <div className="text-sm text-slate-600 dark:text-slate-300">
                       Age {submission.age}
                     </div>
-                    <Badge variant="secondary">{submission.year}</Badge>
                   </div>
                 </TableCell>
                 <TableCell className="align-top">
                   <div className="space-y-2 text-sm text-slate-600 dark:text-slate-300">
-                    <div className="flex items-center gap-2">
-                      <Building2Icon className="size-4 shrink-0" />
-                      <span className="max-w-xs whitespace-normal">
-                        {submission.collegeName}
-                      </span>
-                    </div>
-                    <div className="max-w-xs whitespace-normal">
-                      {submission.department}
-                    </div>
-                  </div>
-                </TableCell>
-                <TableCell className="align-top">
-                  <div className="space-y-2 text-sm text-slate-600 dark:text-slate-300">
-                    <div className="flex items-center gap-2">
-                      <MailIcon className="size-4 shrink-0" />
-                      <span>{submission.email}</span>
-                    </div>
                     <div className="flex items-center gap-2">
                       <PhoneIcon className="size-4 shrink-0" />
                       <span>{submission.mobileNumber}</span>
                     </div>
-                    {submission.alternativeMobileNumber ? (
-                      <div className="flex items-center gap-2">
-                        <PhoneIcon className="size-4 shrink-0" />
-                        <span>{submission.alternativeMobileNumber}</span>
-                      </div>
-                    ) : null}
+                  </div>
+                </TableCell>
+                <TableCell className="align-top">
+                  <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
+                    <GraduationCapIcon className="size-4 shrink-0" />
+                    <Badge variant="secondary">{submission.qualification}</Badge>
                   </div>
                 </TableCell>
                 <TableCell className="align-top">
@@ -113,13 +95,6 @@ export function SubmissionsTable({
                 </TableCell>
                 <TableCell className="px-4 align-top">
                   <div className="flex justify-end gap-2">
-                    <a
-                      href={`mailto:${submission.email}`}
-                      className="inline-flex size-7 items-center justify-center rounded-full border border-white/20 bg-white/70 text-slate-700 transition-colors hover:text-slate-950 dark:bg-white/5 dark:text-slate-200 dark:hover:text-white"
-                      aria-label={`Email ${submission.name}`}
-                    >
-                      <MailIcon className="size-4" />
-                    </a>
                     <DeleteSubmissionDialog
                       submissionId={submission.id}
                       fullName={submission.name}

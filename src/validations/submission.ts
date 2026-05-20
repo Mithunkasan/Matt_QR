@@ -1,6 +1,6 @@
 import { z } from "zod"
 
-import { studentYearOptions } from "@/types/submission"
+import { qualificationOptions } from "@/types/submission"
 
 export const formIdSchema = z
   .string()
@@ -34,31 +34,9 @@ export const submissionSchema = z.object({
       )
   ),
   mobileNumber: mobileNumberSchema,
-  email: z.string().trim().email("Enter a valid email address"),
-  collegeName: z
-    .string()
-    .trim()
-    .min(2, "College name must be at least 2 characters")
-    .max(120, "College name is too long"),
-  department: z
-    .string()
-    .trim()
-    .min(2, "Department must be at least 2 characters")
-    .max(80, "Department is too long"),
-  year: z.enum(studentYearOptions, {
-    error: "Select your year",
+  qualification: z.enum(qualificationOptions, {
+    error: "Select qualification",
   }),
-  alternativeMobileNumber: z.preprocess(
-    (value) => {
-      if (typeof value !== "string") {
-        return value
-      }
-
-      const trimmed = value.trim()
-      return trimmed === "" ? undefined : trimmed
-    },
-    mobileNumberSchema.optional()
-  ),
 })
 
 export type SubmissionInput = z.infer<typeof submissionSchema>
